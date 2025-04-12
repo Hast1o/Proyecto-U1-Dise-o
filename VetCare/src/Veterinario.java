@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 public class Veterinario {
     private String nombre;
     private String rut;
