@@ -9,8 +9,9 @@ public class Mascota {
     private int nro_chip;
     private String estado_salud;
     private ArrayList<HistorialMedico> historial;
+    private Dueño dueño_mascota;
 
-    public Mascota(String _nombre, String _especie, String _raza, int _edad, float _peso, int _nro_chip, String _estado_salud) {
+    public Mascota(String _nombre, String _especie, String _raza, int _edad, float _peso, int _nro_chip, String _estado_salud, Dueño _dueño_mascota) {
         this.nombre = _nombre;
         this.especie = _especie;
         this.raza = _raza;
@@ -19,6 +20,7 @@ public class Mascota {
         this.nro_chip = _nro_chip;
         this.estado_salud = _estado_salud;
         this.historial = new ArrayList<HistorialMedico>();
+        this.dueño_mascota = _dueño_mascota;
     }
 
     public String getNombre() {
