@@ -45,4 +45,10 @@ public class Veterinario {
         this.disponibilidad = disponibilidad;
     }
     
+    public void mostrarVeterinario(){
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Rut: " + this.rut);
+        System.out.println("Especialidad: " + this.especialidad);
+        System.out.println();
+    }
 }

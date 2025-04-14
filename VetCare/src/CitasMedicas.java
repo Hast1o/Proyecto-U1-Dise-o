@@ -6,7 +6,7 @@ public class CitasMedicas {
     private String fecha;
     private String hora;
     private String motivo;
-    private String estado;
+    private String estado; //pendiente, realizada, cancelada
     private Mascota mascota_asociada;
     private Veterinario veterinario_asignado;
     private ArrayList<Servicios> servicios_sol;

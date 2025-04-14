@@ -1,12 +1,12 @@
 public class Servicios {
     private String nombre;
-    private int codigo;
+    private String codigo;
     private String descripcion;
     private int costo;
     private String duracion;
     private String restriccion;
 
-    public Servicios(String _nombre, int _codigo, String _descripcion, int _costo, String _duracion, String _restriccion) {
+    public Servicios(String _nombre, String _codigo, String _descripcion, int _costo, String _duracion, String _restriccion) {
         this.nombre = _nombre;
         this.codigo = _codigo;
         this.descripcion = _descripcion;
@@ -23,11 +23,11 @@ public class Servicios {
         this.nombre = nombre;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -63,4 +63,13 @@ public class Servicios {
         this.restriccion = restriccion;
     }
     
+    public void mostrarServicio(){
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Codigo: " + this.codigo);
+        System.out.println("Descripcion: " + this.descripcion);
+        System.out.println("Costo " + this.costo);
+        System.out.println("Duracion " + this.duracion);
+        System.out.println("Restriccion: " + this.restriccion);
+        System.out.println();
+    }
 }

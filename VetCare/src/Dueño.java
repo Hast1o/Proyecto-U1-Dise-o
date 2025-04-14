@@ -65,4 +65,23 @@ public class Dueño {
         this.mascotas = mascotas;
     }
     
+    public void mostrarDueño(){
+        System.out.println("Nombre : " + this.nombre);
+        System.out.println("Rut : " + this.rut);
+        System.out.println("Correo : " + this.correo);
+        System.out.println("Direccion : " + this.direccion);
+        System.out.println("Telefono : " + this.telefono);
+        if (mascotas.size() == 0) {
+            System.out.println("No hay mascota asociada");
+        }else{
+            System.out.println("Mascota / Mascotas : \n");
+            for(int i = 0; i < mascotas.size(); i++){
+                mascotas.get(i).mostrarMascota();
+            }
+        }
+    }
+
+    public void agregarMascota(Mascota nueva){
+        mascotas.add(nueva);
+    }
 }
