@@ -13,4 +13,8 @@ public class Pagos {
     public Pagos(int _abono){
         this.abono = _abono;
     }
+
+    public void pagar(int precio_final){
+        System.out.println("Pago realizado por " + abono + " unidades monetarias.");
+    }
 }

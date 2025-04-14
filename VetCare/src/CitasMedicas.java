@@ -106,5 +106,28 @@ public class CitasMedicas {
     public void setCosto_total(int costo_total) {
         this.costo_total = costo_total;
     }
+
+    public void calcular_total() {
+        int total = 0;
+        for (Servicios servicio : servicios_sol) {
+            total += servicio.getCosto();
+        }
+        setCosto_total(total);
+    }
+
+    public void calcular_deuda(int monto_abonado) {
+        setDeuda(getCosto_total() - monto_abonado);
+        if(getDeuda() == 0) {
+            setEstado("Pagado");
+            System.out.println("El monto total ha sido cubierto.");
+        } else {
+            setEstado("Pendiente");
+            System.out.println("El monto total no ha sido cubierto. La deuda es de: " + getDeuda() + " pesos.");
+        }
+    }
+
+    public void agregar_pago(Pagos pago) {
+        pagos_asociados.add(pago);
+    }
     
 }
