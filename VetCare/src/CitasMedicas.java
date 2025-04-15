@@ -116,7 +116,7 @@ public class CitasMedicas {
     }
 
     public void calcular_deuda(int monto_abonado) {
-        setDeuda(getCosto_total() - monto_abonado);
+        setDeuda(getDeuda() - monto_abonado);
         if(getDeuda() == 0) {
             setEstado("Pagado");
             System.out.println("El monto total ha sido cubierto.");
