@@ -118,11 +118,12 @@ public class CitasMedicas {
     }
 
     public void calcular_total() {
-        int total = 0;
+        int total = 10000;
         for (Servicios servicio : servicios_sol) {
             total += servicio.getCosto();
         }
         setCosto_total(total);
+        setDeuda(total);
     }
 
     public void calcular_deuda(int monto_abonado) {

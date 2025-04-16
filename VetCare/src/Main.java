@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,13 +28,112 @@ public class Main {
         Mascota mascota2 = new Mascota("Athenea","Perro","Pitbull", 6, 0, 17, 0, "Sano", dueño2);
         Mascota mascota3 = new Mascota("Spike", "Perro", "Quiltro", 9, 14, 7, 1201, "Sano", dueño2);
         Servicios servicio1 = new Servicios("Castracion", "X01", "Estirilizacion", 40000, "40 minutos", "El animal no debe pasar los 2 años");
+        dueño1.agregarMascota(mascota1);
+        dueño2.agregarMascota(mascota2);
+        dueño2.agregarMascota(mascota3);
         servicios_dispo.add(servicio1);
         ArrayList <Servicios> aux_ser = new ArrayList<>();
         aux_ser.add(servicio1);
         Servicios servicio2 = new Servicios("Lavado", "Y01", "Bañar al animal", 20000, "20 minutos", "Ninguna");
         servicios_dispo.add(servicio2);
-        CitasMedicas cita1 = new CitasMedicas("16", "04", "10:30", "Esterilizacion", mascota2, veterinario1, aux_ser, 0, 0);
+        CitasMedicas cita1 = new CitasMedicas("16", "04", "10:30", "Esterilizacion", mascota2, veterinario1, aux_ser, 40000, 40000);
         citas.add(cita1);
+        int opcionInt = 0;
+        int opcionInt2 = 0;
+        boolean continuar = false;
+        Scanner scanner = new Scanner(System.in);
+        while(!continuar){
+            System.out.println("Bienvenido a VetCare, ¿Que desea hacer?");
+            System.out.println("1. Registrar dueño\n2. Registrar mascota\n3. Agendar cita\n4. Pagar cita\n5. Mostrar mascotas de dueño\n6. Mostrar todas las mascotas\n7. Mostrar historial de mascota\n8. Mostrar citas\n9. Cancelar cita\n10. Salir");
+            try {
+                opcionInt = Integer.parseInt(scanner.nextLine());
+                if(opcionInt < 1 || opcionInt > 10){
+                    System.out.println("opcion no valida, ingrese un numero entre 1 y 10");
+                }else{
+                    continuar = false;
+                }
+            } catch (Exception e) {
+                System.out.println("las opciones son solo numeros, ingrese un numero entre 1 y 10");
+            }
+            if(opcionInt == 1){
+                Dueño nuevoDueño = crearDueño();
+                dueños.add(nuevoDueño);
+            }else if(opcionInt == 2){
+                System.out.println("Dueños disponibles: ");
+                for(int i = 0; i < dueños.size(); i++){
+                    System.out.println(i + 1 + ". " + dueños.get(i).getNombre());
+                }
+                System.out.println("¿A que dueño desea agregar la mascota? Ingrese el numero correspondiente");
+                opcionInt2 = Integer.parseInt(scanner.nextLine()) - 1;
+                Mascota nuevaMascota = crearMascota(dueños.get(opcionInt2));
+                dueños.get(opcionInt2).agregarMascota(nuevaMascota);
+            }
+            else if(opcionInt == 3){
+                System.out.println("Dueños disponibles: ");
+                for(int i = 0; i < dueños.size(); i++){
+                    System.out.println(i + 1 + ". " + dueños.get(i).getNombre());
+                }
+                System.out.println("quien desea agendar una cita? Ingrese el numero correspondiente");
+                opcionInt2 = Integer.parseInt(scanner.nextLine()) - 1;
+                ArrayList<Dueño> duenios = new ArrayList<>();
+                duenios.add(dueños.get(opcionInt2));
+                CitasMedicas nuevaCita = agendarCita(veterinarios, duenios, servicios_dispo);
+                citas.add(nuevaCita);
+            }
+            else if(opcionInt == 4){
+                int contador =0;
+                System.out.println("Citas disponibles: ");
+                for(int i = 0; i < citas.size(); i++){
+                    if(citas.get(i).getEstado().equalsIgnoreCase("Pendiente")){
+                        System.out.println(i + 1 + ". " + citas.get(i).getMascota_asociada().getNombre());
+                        System.out.println(citas.get(i).getMotivo() + " " + citas.get(i).getEstado());
+                        contador++;
+                    }
+                }
+                if(contador == 0){
+                    System.out.println("No hay citas pendientes");
+                }else{
+                    System.out.println("¿Que cita desea pagar? Ingrese el numero correspondiente");
+                    opcionInt2 = Integer.parseInt(scanner.nextLine()) - 1;
+                    pagar(citas.get(opcionInt2));
+                }
+                
+            }
+            else if(opcionInt == 5){
+                System.out.println("Dueños disponibles: ");
+                for(int i = 0; i < dueños.size(); i++){
+                    System.out.println(i + 1 + ". " + dueños.get(i).getNombre());
+                }
+                System.out.println("¿De que dueño desea ver las mascotas? Ingrese el numero correspondiente");
+                opcionInt2 = Integer.parseInt(scanner.nextLine()) - 1;
+                mostrarMascotaDe(dueños.get(opcionInt2));
+            }
+            else if(opcionInt == 6){
+                mostrarTodasLasMascotas(dueños);
+            }
+            else if(opcionInt == 7){
+                Mascota mascota = escogerMascota(dueños);
+                mostrarHistorialDe(mascota);
+            }
+            else if(opcionInt == 8){
+                mostrarCitas(citas, dueños);
+            }
+            else if(opcionInt == 9){
+                System.out.println("Citas disponibles: ");
+                for(int i = 0; i < citas.size(); i++){
+                    if(citas.get(i).getEstado().equalsIgnoreCase("Pendiente")){
+                        System.out.println(i + 1 + ". " + citas.get(i).getMascota_asociada().getNombre());
+                        System.out.println(citas.get(i).getMotivo() + " " + citas.get(i).getEstado());
+                    }
+                }
+                System.out.println("¿Que cita desea cancelar? Ingrese el numero correspondiente");
+                opcionInt2 = Integer.parseInt(scanner.nextLine()) - 1;
+                cancelarCita(citas.get(opcionInt2));
+            }else if(opcionInt == 10){
+                System.out.println("Gracias por usar VetCare, vuelva pronto");
+                continuar = true;
+            }
+        }
     }
 
     public static void pagar(CitasMedicas _cita){
@@ -674,7 +774,8 @@ public class Main {
                 servicio = "";
             }
         }
-        CitasMedicas nueva = new CitasMedicas(dia, mes, hora, motivo, mascota, veterinario, servicios_dispo, 0 ,0);
+        CitasMedicas nueva = new CitasMedicas(dia, mes, hora, motivo, mascota, veterinario, solicitados, 0 ,0);
+        nueva.calcular_total();
         veterinario.agregarCita(nueva);
         return nueva;
     }
@@ -686,4 +787,21 @@ public class Main {
     public static void cancelarCita(CitasMedicas cita){
         cita.setEstado("CANCELADA");
     }
+
+    public static void mostrarCitas(ArrayList<CitasMedicas> citas, ArrayList<Dueño> dueños){
+        Mascota mascotaAux = escogerMascota(dueños);
+        for (CitasMedicas _citas : citas) {
+            if(_citas.getMascota_asociada()==mascotaAux){
+                System.out.println("Cita: " + _citas.getMotivo() + " " + _citas.getEstado());
+                System.out.println("Veterinario: " + _citas.getVeterinario_asignado().getNombre());
+                System.out.println("Dia: " + _citas.getDia() + "/" + _citas.getMes() + " Hora: " + _citas.getHora());
+                System.out.println("Servicios solicitados: ");
+                for (Servicios servicio : _citas.getServicios_sol()) {
+                    System.out.println(servicio.getNombre());
+                }
+                System.out.println();
+            }
+        }
+    }
 }
+
