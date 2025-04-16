@@ -201,6 +201,10 @@ public class Main {
                 _cita.agregar_pago(seguro);
             }
         }
+        if(_cita.getDeuda() == 0){
+            realizarCita(_cita);
+            System.out.println("Cita pagada con exito, cita realizada");
+        }
     }
 
     public static Dueño crearDueño(){
