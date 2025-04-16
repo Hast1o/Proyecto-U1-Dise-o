@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import FlujoDeDinero.Pagos;
 
 public class CitasMedicas {
-    private String fecha;
+    private String dia;
+    private String mes;
     private String hora;
     private String motivo;
     private String estado; //pendiente, realizada, cancelada
@@ -14,25 +15,34 @@ public class CitasMedicas {
     private int deuda;
     private int costo_total;
 
-    public CitasMedicas(String _fecha, String _hora, String _motivo, String _estado, Mascota _mascota_asociada, Veterinario _veterinario_asignado, int _deuda, int _costo_total) {
-        this.fecha = _fecha;
+    public CitasMedicas(String _dia, String _mes, String _hora, String _motivo, Mascota _mascota_asociada, Veterinario _veterinario_asignado, ArrayList<Servicios> _servicios_sol, int _deuda, int _costo_total) {
+        this.dia = _dia;
+        this.mes = _mes;
         this.hora = _hora;
         this.motivo = _motivo;
-        this.estado = _estado;
+        this.estado = "PENDIENTE";
         this.mascota_asociada = _mascota_asociada;
         this.veterinario_asignado = _veterinario_asignado;
-        this.servicios_sol = new ArrayList<Servicios>();
+        this.servicios_sol = _servicios_sol;
         this.pagos_asociados = new ArrayList<Pagos>();
         this.deuda = _deuda;
         this.costo_total = _costo_total;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getDia() {
+        return dia;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
     }
 
     public String getHora() {
@@ -106,5 +116,6 @@ public class CitasMedicas {
     public void setCosto_total(int costo_total) {
         this.costo_total = costo_total;
     }
+    
     
 }

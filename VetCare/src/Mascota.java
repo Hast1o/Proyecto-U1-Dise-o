@@ -125,9 +125,13 @@ public class Mascota {
     }
 
     public void mostrarHistorial(){
-        System.out.println("Historial de " + this.nombre);
-        for(int i = 0; i < historial.size(); i++){
-            historial.get(i).mostrarHistorial();
+        if (historial.size() == 0) {
+            System.out.println("No hay historial disponible");
+        }else{
+            System.out.println("Historial de " + this.nombre);
+            for(int i = 0; i < historial.size(); i++){
+                historial.get(i).mostrarHistorial();
+            }
         }
     }
 }
