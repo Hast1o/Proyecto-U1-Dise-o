@@ -9,7 +9,31 @@ import FlujoDeDinero.Transferencias;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
+        ArrayList<Dueño> dueños = new ArrayList<>();
+        ArrayList<Servicios> servicios_dispo = new ArrayList<>();
+        ArrayList<Veterinario> veterinarios = new ArrayList<>();
+        ArrayList<CitasMedicas> citas = new ArrayList<>();
+        Veterinario veterinario1 = new Veterinario("Jose Iturra", "21.603.528-3", "Traumatologia");
+        Veterinario veterinario2 = new Veterinario("Hernan Silva", "21.487.685-K", "Ugencias");
+        Veterinario veterinario3 = new Veterinario("Nicolas Cavieres", "20.269.345-8", "General");
+        veterinarios.add(veterinario1);
+        veterinarios.add(veterinario2);
+        veterinarios.add(veterinario3);
+        Dueño dueño1 = new Dueño("Benjamin Alarcon", "9.729.880-7", "balarcon22@alumnos.utalca.cl", "Chacabuco 269 Curico", 962217060);
+        Dueño dueño2 = new Dueño("Jose Gomez", "9.800.301-0", "jgomez22@alumnos.utalca.cl", "Balmaceda 245 Curico", 956832099);
+        dueños.add(dueño1);
+        dueños.add(dueño2);
+        Mascota mascota1 = new Mascota("Joaquin", "Gato","Mau Egipcio", 2, 1, 4.6, 9530, "Sano", dueño1);
+        Mascota mascota2 = new Mascota("Athenea","Perro","Pitbull", 6, 0, 17, 0, "Sano", dueño2);
+        Mascota mascota3 = new Mascota("Spike", "Perro", "Quiltro", 9, 14, 7, 1201, "Sano", dueño2);
+        Servicios servicio1 = new Servicios("Castracion", "X01", "Estirilizacion", 40000, "40 minutos", "El animal no debe pasar los 2 años");
+        servicios_dispo.add(servicio1);
+        ArrayList <Servicios> aux_ser = new ArrayList<>();
+        aux_ser.add(servicio1);
+        Servicios servicio2 = new Servicios("Lavado", "Y01", "Bañar al animal", 20000, "20 minutos", "Ninguna");
+        servicios_dispo.add(servicio2);
+        CitasMedicas cita1 = new CitasMedicas("16", "04", "10:30", "Esterilizacion", mascota2, veterinario1, aux_ser, 0, 0);
+        citas.add(cita1);
     }
 
     public static void pagar(CitasMedicas _cita){
