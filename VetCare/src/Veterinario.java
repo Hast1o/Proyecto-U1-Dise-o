@@ -45,4 +45,29 @@ public class Veterinario {
         this.disponibilidad = disponibilidad;
     }
     
+    public void mostrarVeterinario(){
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Rut: " + this.rut);
+        System.out.println("Especialidad: " + this.especialidad);
+        System.out.println();
+    }
+
+    public boolean revisarDisponibilidad(String dia, String mes, String hora){
+        for(int i = 0; i < disponibilidad.size(); i++){
+            if (dia.equals(disponibilidad.get(i).getDia())) {
+                if (mes.equals(disponibilidad.get(i).getMes())) {
+                    if (hora.equals(disponibilidad.get(i).getHora())) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void agregarCita(CitasMedicas cita){
+        disponibilidad.add(cita);
+    }
+
+    
 }

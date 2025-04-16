@@ -1,28 +1,18 @@
 public class HistorialMedico {
-    private Mascota mascota_vista;
     private String fecha;
     private String observaciones;
     private String diagnostico;
     private String tratamiento_reco;
     private boolean requiere_control;
 
-    public HistorialMedico(Mascota _mascota_vista, String _fecha, String _observaciones, String _diagnostico, String _tratamiento_reco, boolean _requiere_control) {
-        this.mascota_vista = _mascota_vista;
+    public HistorialMedico(String _fecha, String _observaciones, String _diagnostico, String _tratamiento_reco, boolean _requiere_control) {
         this.fecha = _fecha;
         this.observaciones = _observaciones;
         this.diagnostico = _diagnostico;
         this.tratamiento_reco = _tratamiento_reco;
         this.requiere_control = _requiere_control;
     }
-
-    public Mascota getMascota_vista() {
-        return mascota_vista;
-    }
-
-    public void setMascota_vista(Mascota mascota_vista) {
-        this.mascota_vista = mascota_vista;
-    }
-
+    
     public String getFecha() {
         return fecha;
     }
@@ -63,4 +53,17 @@ public class HistorialMedico {
         this.requiere_control = requiere_control;
     }
     
+    public void mostrarHistorial(){
+        System.out.println("Fecha de control: " + this.fecha);
+        System.out.println("Observaciones: " + this.observaciones);
+        System.out.println("Diagnostico : " + this.diagnostico);
+        System.out.println("Tratamiento recomendado: " + this.tratamiento_reco);
+        System.out.print("Necesita control: ");
+        if (requiere_control) {
+            System.out.println("Si necesita");
+        }else{
+            System.out.println("No necesita");
+        }
+        System.out.println();
+    }
 }
