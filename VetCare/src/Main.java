@@ -8,8 +8,12 @@ import FlujoDeDinero.Tarjeta;
 import FlujoDeDinero.Transferencias;
 
 public class Main {
+    public static void main(String[] args) throws Exception {
+
+    }
 
     public static void pagar(CitasMedicas _cita){
+        
         boolean validar = false;
         Scanner scanner = new Scanner(System.in);
         int opcionInt = 0;
@@ -74,17 +78,5 @@ public class Main {
                 _cita.agregar_pago(seguro);
             }
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        Dueño nicolas = new Dueño("nicolas", "20.269.345-8", "ncabrera22@alumnos.utalca.cl", "poblacion inocencio correa #14 Rauco", 932434576);
-        Mascota joaquin = new Mascota("joaquin", "gato", "naranja", 1, 4, 123456, "enfermo", nicolas);
-        Veterinario joseVet = new Veterinario("jose", "9.729.880-7", "pulmones");
-        CitasMedicas cita = new CitasMedicas("2023-10-01", "10:00", "control", "pendiente", joaquin, joseVet, 10000, 10000);
-        for(Pagos pago : cita.getPagos_asociados()){
-            System.out.println(pago.getAbono());
-        }
-
     }
 }
